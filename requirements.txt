@@ -1,0 +1,9 @@
+affine==2.4.0
+IHSetCalibration @ git+https://github.com/defreitasL/IHSetCalibration.git@654d7c9e92d5064e7165bd72cd56d56957c8e0a8
+IHSetUtils @ git+https://github.com/IHCantabria/IHSetUtils.git@486fcbe8f769be16f4d96fcecf39d8d7c29f2453
+matplotlib==3.8.3
+netCDF4==1.6.5
+numba==0.59.0
+numpy==1.26.4
+pandas==2.2.1
+xarray==2024.2.0
