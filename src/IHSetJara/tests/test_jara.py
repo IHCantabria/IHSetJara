@@ -15,7 +15,7 @@ import numpy as np
 #                             'bathy_angle': 36,      # Bathymetry mean orientation [deg N]
 #                             'xc' : 255,             # Cross-shore distance from shore to closure depth [m]
 #                             'hc' : 6,               # Depth of closure [m]
-#                             'B' : 2,                # Berm height [m]
+#                             'Hberm' : 2,                # Berm height [m]
 
 #                             'Ysi': 1975,            # Initial year for calibration
 #                             'Msi': 1,               # Initial month for calibration
@@ -37,7 +37,7 @@ config = xr.Dataset(coords={'dt': 3,                # [hours]
                             'bathy_angle': 36,      # Bathymetry mean orientation [deg N]
                             'xc' : 255,             # Cross-shore distance from shore to closure depth [m]
                             'hc' : 6,               # Depth of closure [m]
-                            'B' : 2,                # Berm height [m]
+                            'Hberm' : 2,                # Berm height [m]
                                                     
                             'Ysi': 1975,            # Initial year for calibration
                             'Msi': 1,               # Initial month for calibration
