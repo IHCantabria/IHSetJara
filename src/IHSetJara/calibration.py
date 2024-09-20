@@ -59,7 +59,7 @@ class cal_Jara(object):
         the_max = cfg['bathy_angle'].values
         self.theta_max = the_max * np.pi / 180
         self.xc = cfg['xc'].values
-        self.B = cfg['B'].values
+        self.B = cfg['Hberm'].values
         self.D50 = cfg['D50'].values
 
         breakType = "spectral"
