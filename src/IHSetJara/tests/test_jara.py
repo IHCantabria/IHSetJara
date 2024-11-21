@@ -8,47 +8,47 @@ import numpy as np
 
 # Avaliable methods: NSGAII, SCE-UA
 
-# config = xr.Dataset(coords={'dt': 3,                # [hours]
-#                             'switch_Yini': 0,       # Calibrate the initial position? (0: No, 1: Yes)
-#                             'depth': 10,            # Water depth [m]
-#                             'D50': 0.427e-3,        # Median grain size [m]
-#                             'bathy_angle': 36,      # Bathymetry mean orientation [deg N]
-#                             'xc' : 255,             # Cross-shore distance from shore to closure depth [m]
-#                             'hc' : 6,               # Depth of closure [m]
-#                             'Hberm' : 2,                # Berm height [m]
-
-#                             'Ysi': 1975,            # Initial year for calibration
-#                             'Msi': 1,               # Initial month for calibration
-#                             'Dsi': 1,               # Initial day for calibration
-#                             'Ysf': 2013,            # Final year for calibration
-#                             'Msf': 1,               # Final month for calibration
-#                             'Dsf': 1,               # Final day for calibration
-#                             'cal_alg': 'NSGAII',    # Avaliable methods: NSGAII
-#                             'metrics': 'mss_nsse',  # Metrics to be minimized (mss_rmse, mss_rho, mss_rmse_rho)
-#                             'n_pop': 50,            # Number of individuals in the population
-#                             'n_obj': 2,             # Number of objectives to be minimized 
-#                             'generations': 500,    # Number of generations for the calibration algorithm
-#                             })              
-
 config = xr.Dataset(coords={'dt': 3,                # [hours]
                             'switch_Yini': 0,       # Calibrate the initial position? (0: No, 1: Yes)
                             'depth': 10,            # Water depth [m]
                             'D50': 0.427e-3,        # Median grain size [m]
                             'bathy_angle': 36,      # Bathymetry mean orientation [deg N]
+                            'theta_max': 36,        # Critical angle of repose [Deg.]
                             'xc' : 255,             # Cross-shore distance from shore to closure depth [m]
-                            'hc' : 6,               # Depth of closure [m]
-                            'Hberm' : 2,                # Berm height [m]
-                                                    
+                            'Hberm' : 2,            # Berm height [m]
+
                             'Ysi': 1975,            # Initial year for calibration
                             'Msi': 1,               # Initial month for calibration
                             'Dsi': 1,               # Initial day for calibration
                             'Ysf': 2013,            # Final year for calibration
                             'Msf': 1,               # Final month for calibration
                             'Dsf': 1,               # Final day for calibration
-                            'cal_alg': 'sceua',     # Avaliable methods: sceua
-                            'metrics': 'rmse',      # Metrics to be minimized (mss, RP, rmse, nsse)
-                            'repetitions': 50000    # Number of repetitions for the calibration algorithm
-                            })
+                            'cal_alg': 'NSGAII',    # Avaliable methods: NSGAII
+                            'metrics': 'mss_nsse',  # Metrics to be minimized (mss_rmse, mss_rho, mss_rmse_rho)
+                            'n_pop': 50,            # Number of individuals in the population
+                            'n_obj': 2,             # Number of objectives to be minimized 
+                            'generations': 500,    # Number of generations for the calibration algorithm
+                            })              
+
+# config = xr.Dataset(coords={'dt': 3,                # [hours]
+#                             'switch_Yini': 0,       # Calibrate the initial position? (0: No, 1: Yes)
+#                             'depth': 10,            # Water depth [m]
+#                             'D50': 0.427e-3,        # Median grain size [m]
+#                             'bathy_angle': 36,      # Bathymetry mean orientation [deg N]
+#                             'theta_max': 36,        # Critical angle of repose [Deg.]
+#                             'xc' : 255,             # Cross-shore distance from shore to closure depth [m]
+#                             'Hberm' : 2,            # Berm height [m]
+                                                    
+#                             'Ysi': 1975,            # Initial year for calibration
+#                             'Msi': 1,               # Initial month for calibration
+#                             'Dsi': 1,               # Initial day for calibration
+#                             'Ysf': 2013,            # Final year for calibration
+#                             'Msf': 1,               # Final month for calibration
+#                             'Dsf': 1,               # Final day for calibration
+#                             'cal_alg': 'sceua',     # Avaliable methods: sceua
+#                             'metrics': 'rmse',      # Metrics to be minimized (mss, RP, rmse, nsse)
+#                             'repetitions': 50000    # Number of repetitions for the calibration algorithm
+#                             })
 
 wrkDir = os.getcwd()
 config.to_netcdf(wrkDir+'/data/config.nc', engine='netcdf4')
