@@ -14,7 +14,7 @@ config = xr.Dataset(coords={'dt': 3,                # [hours]
                             'D50': 0.427e-3,        # Median grain size [m]
                             'bathy_angle': 36,      # Bathymetry mean orientation [deg N]
                             'theta_max': 36,        # Critical angle of repose [Deg.]
-                            'xc' : 255,             # Cross-shore distance from shore to closure depth [m]
+                            'xc' : 200,             # Cross-shore distance from shore to closure depth [m]
                             'Hberm' : 2,            # Berm height [m]
 
                             'Ysi': 1975,            # Initial year for calibration
@@ -36,7 +36,7 @@ config = xr.Dataset(coords={'dt': 3,                # [hours]
 #                             'D50': 0.427e-3,        # Median grain size [m]
 #                             'bathy_angle': 36,      # Bathymetry mean orientation [deg N]
 #                             'theta_max': 36,        # Critical angle of repose [Deg.]
-#                             'xc' : 255,             # Cross-shore distance from shore to closure depth [m]
+#                             'xc' : 200,             # Cross-shore distance from shore to closure depth [m]
 #                             'Hberm' : 2,            # Berm height [m]
                                                     
 #                             'Ysi': 1975,            # Initial year for calibration
