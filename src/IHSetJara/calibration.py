@@ -5,7 +5,7 @@ from spotpy.parameter import Uniform
 from scipy.optimize import fsolve
 from IHSetJara import jara
 from IHSetCalibration import objective_functions
-from IHSetUtils import BreakingPropagation, ADEAN, hunt
+from IHSetUtils import BreakingPropagation, ADEAN, hunt, Hs12Calc, depthOfClosure
 
 class cal_Jara(object):
     """
@@ -54,9 +54,10 @@ class cal_Jara(object):
         
         self.depth = cfg['depth'].values
         self.angleBathy = cfg['bathy_angle'].values
-        self.hc = cfg['hc'].values
-        # the_max = cfg['theta_max'].values
-        the_max = cfg['bathy_angle'].values
+        H12,T12 = Hs12Calc(self.Hs.reshape(-1, 1),self.Tp.reshape(-1, 1))
+        DoC = depthOfClosure(H12,T12)
+        self.hc = DoC[0][0]
+        the_max = cfg['theta_max'].values
         self.theta_max = the_max * np.pi / 180
         self.xc = cfg['xc'].values
         self.B = cfg['Hberm'].values
