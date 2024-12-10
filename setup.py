@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='IHSetJara',
-    version='0.1.0',
+    version='1.0.0',
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
@@ -11,12 +11,13 @@ setup(
         'numba',
         'datetime',
         'spotpy',
-        'IHSetCalibration @ git+https://github.com/defreitasL/IHSetCalibration.git'
+        'IHSetCalibration @ git+https://github.com/defreitasL/IHSetCalibration.git',
+        'fast_optimization @ git+https://github.com/defreitasL/fast_optimization.git'
     ],
     author='Changbin Lim',
-    author_email='limcs@unican.es',
-    description='IH-SET Lim et al. (2022)',
-    url='https://github.com/IHCantabria/IHSetLim',
+    author_email='@unican.es',
+    description='IH-SET Jara et al. (2022)',
+    url='https://github.com/IHCantabria/IHSetJara',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
