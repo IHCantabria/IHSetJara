@@ -2,16 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name='IHSetJara',
-    version='1.0.1',
+    version='1.0.2',
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
         'numpy',
         'xarray',
         'numba',
-        'datetime',
-        'spotpy',
-        'IHSetCalibration @ git+https://github.com/defreitasL/IHSetCalibration.git',
         'fast_optimization @ git+https://github.com/defreitasL/fast_optimization.git'
     ],
     author='Changbin Lim',

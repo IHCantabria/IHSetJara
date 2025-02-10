@@ -1,7 +1,6 @@
 README.md
 setup.py
 IHSetJara/__init__.py
-IHSetJara/calibration.py
 IHSetJara/calibration_2.py
 IHSetJara/direct_run.py
 IHSetJara/jara.py
@@ -11,5 +10,3 @@ IHSetJara.egg-info/SOURCES.txt
 IHSetJara.egg-info/dependency_links.txt
 IHSetJara.egg-info/requires.txt
 IHSetJara.egg-info/top_level.txt
-IHSetJara/tests/__init__.py
-IHSetJara/tests/test_jara.py
