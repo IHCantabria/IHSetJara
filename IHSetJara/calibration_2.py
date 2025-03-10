@@ -35,6 +35,7 @@ class cal_Jara_2(object):
             self.bathy_angle = cfg['bathy_angle']
             self.breakType = cfg['break_type']
             self.depth = cfg['depth']
+        self.doc_formula = cfg['doc_formula']
         self.xc = cfg['xc']
         self.Hberm = cfg['Hberm']
         self.theta_max = cfg['theta_max']
@@ -67,7 +68,7 @@ class cal_Jara_2(object):
         data.close()
 
         self.hs12, self.tp12 = Hs12Calc(self.hs.reshape(-1, 1), self.tp.reshape(-1, 1))
-        self.depth_of_closure = depthOfClosure(self.hs12, self.tp12)
+        self.depth_of_closure = depthOfClosure(self.hs12, self.tp12, self.doc_formula)
         self.hc = self.depth_of_closure[0][0]
         self.theta_max = self.theta_max * np.pi / 180
 
