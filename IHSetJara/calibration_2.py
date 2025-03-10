@@ -140,7 +140,7 @@ class cal_Jara_2(object):
                 ca = -np.exp(par[0])
                 ce = -np.exp(par[1])
                 
-                Ymd, _ = jara(self.hb_splited,
+                Ymd = jara(self.hb_splited,
                               self.Hcr_splited,
                               self.Yini,
                               self.dt_splited,
@@ -162,7 +162,7 @@ class cal_Jara_2(object):
             def run_model(par):
                 ca = -np.exp(par[0])
                 ce = -np.exp(par[1])
-                Ymd, _ = jara(self.hb,
+                Ymd = jara(self.hb,
                               self.Hcr,
                               self.Yini,
                               self.dt,
@@ -198,7 +198,7 @@ class cal_Jara_2(object):
                 ca = -np.exp(par[0])
                 ce = -np.exp(par[1])
                 Yini = par[2]
-                Ymd, _ = jara(self.hb_splited,
+                Ymd = jara(self.hb_splited,
                               self.Hcr_splited,
                               Yini,
                               self.dt_splited,
@@ -221,7 +221,7 @@ class cal_Jara_2(object):
                 ca = -np.exp(par[0])
                 ce = -np.exp(par[1])
                 Yini = par[2]
-                Ymd, _ = jara(self.hb,
+                Ymd = jara(self.hb,
                               self.Hcr,
                               Yini,
                               self.dt,
