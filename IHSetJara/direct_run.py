@@ -33,6 +33,7 @@ class Jara_run(object):
             self.bathy_angle = cfg['bathy_angle']
             self.breakType = cfg['break_type']
             self.depth = cfg['depth']
+        self.doc_formula = cfg['doc_formula']
         self.xc = cfg['xc']
         self.Hberm = cfg['Hberm']
         self.theta_max = cfg['theta_max']
@@ -42,16 +43,18 @@ class Jara_run(object):
 
         if cfg['trs'] == 'Average':
             self.hs = np.mean(data.hs.values, axis=1)
+            self.tp = np.mean(data.tp.values, axis=1)
+            self.dir = circmean(data.dir.values, high=360, low=0, axis=1)
             self.time = pd.to_datetime(data.time.values)
-            self.E = self.hs ** 2
             self.Obs = data.average_obs.values
             self.Obs = self.Obs[~data.mask_nan_average_obs]
             self.time_obs = pd.to_datetime(data.time_obs.values)
             self.time_obs = self.time_obs[~data.mask_nan_average_obs]
         else:
             self.hs = data.hs.values[:, cfg['trs']]
+            self.tp = data.tp.values[:, cfg['trs']]
+            self.dir = data.dir.values[:, cfg['trs']]
             self.time = pd.to_datetime(data.time.values)
-            self.E = self.hs ** 2
             self.Obs = data.obs.values[:, cfg['trs']]
             self.Obs = self.Obs[~data.mask_nan_obs[:, cfg['trs']]]
             self.time_obs = pd.to_datetime(data.time_obs.values)
@@ -63,7 +66,7 @@ class Jara_run(object):
         data.close()
         
         self.hs12, self.tp12 = Hs12Calc(self.hs.reshape(-1, 1), self.tp.reshape(-1, 1))
-        self.depth_of_closure = depthOfClosure(self.hs12, self.tp12)
+        self.depth_of_closure = depthOfClosure(self.hs12, self.tp12, self.doc_formula)
         self.hc = self.depth_of_closure[0][0]
         self.theta_max = self.theta_max * np.pi / 180
 
@@ -112,8 +115,8 @@ class Jara_run(object):
         Ee_ = (self.gamma**2 *  self.hb_**2) / 4.004**2
 
         self.xre_ = self.xc - ((self.hb_ / self.Ar) ** (3 / 2)) + (self.hb_**(3/2) - self.hc**(3/2)) / (
-                (3/5 * (self.hc**(5/2) - self.hb_**(5/2)) + self.B * (self.hc**(3/2) - self.hb_**(3/2))) /
-                (self.Vol - (3/5 * self.hb_**(5/2) + self.B * self.hb_**(3/2)) / self.Ar**(3/2)))
+                (3/5 * (self.hc**(5/2) - self.hb_**(5/2)) + self.Hberm * (self.hc**(3/2) - self.hb_**(3/2))) /
+                (self.Vol - (3/5 * self.hb_**(5/2) + self.Hberm * self.hb_**(3/2)) / self.Ar**(3/2)))
 
         AA = np.array([[self.xre_[0]**2, self.xre_[0], 1], [self.xre_[-1]**2, self.xre_[-1], 1], [2*self.xre_[0], 1, 0]])
         BB = np.array([Ee_[0], Ee_[-1], 0])
@@ -132,14 +135,14 @@ class Jara_run(object):
                 ca = par[0]
                 ce = par[1]
                 Yini = par[2]
-                Ymd, _ = jara_njit(self.hb,
+                Ymd = jara_njit(self.hb,
                               self.Hcr,
                               Yini,
                               self.dt,
                               self.gamma,
                               self.xc,
                               self.hc,
-                              self.B,
+                              self.Hberm,
                               self.Ar,
                               self.hb_,
                               self.xre_,
@@ -154,14 +157,14 @@ class Jara_run(object):
             def run_model(par):
                 ca = par[0]
                 ce = par[1]
-                Ymd, _ = jara_njit(self.hb,
+                Ymd = jara_njit(self.hb,
                               self.Hcr,
                               self.Yini,
                               self.dt,
                               self.gamma,
                               self.xc,
                               self.hc,
-                              self.B,
+                              self.Hberm,
                               self.Ar,
                               self.hb_,
                               self.xre_,

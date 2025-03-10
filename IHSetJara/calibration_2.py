@@ -56,6 +56,8 @@ class cal_Jara_2(object):
             self.time_obs = self.time_obs[~data.mask_nan_average_obs]
         else:
             self.hs = data.hs.values[:, cfg['trs']]
+            self.tp = data.tp.values[:, cfg['trs']]
+            self.dir = data.dir.values[:, cfg['trs']]
             self.time = pd.to_datetime(data.time.values)
             self.Obs = data.obs.values[:, cfg['trs']]
             self.Obs = self.Obs[~data.mask_nan_obs[:, cfg['trs']]]
