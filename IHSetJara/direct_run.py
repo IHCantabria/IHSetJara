@@ -38,8 +38,6 @@ class Jara_run(object):
         self.Hberm = cfg['Hberm']
         self.theta_max = cfg['theta_max']
         self.D50 = cfg['D50']
-        self.lb = cfg['lb']
-        self.ub = cfg['ub']
 
         if cfg['trs'] == 'Average':
             self.hs = np.mean(data.hs.values, axis=1)
