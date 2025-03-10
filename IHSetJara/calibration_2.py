@@ -116,8 +116,8 @@ class cal_Jara_2(object):
         Ee_ = (self.gamma**2 *  self.hb_**2) / 4.004**2
 
         self.xre_ = self.xc - ((self.hb_ / self.Ar) ** (3 / 2)) + (self.hb_**(3/2) - self.hc**(3/2)) / (
-                (3/5 * (self.hc**(5/2) - self.hb_**(5/2)) + self.B * (self.hc**(3/2) - self.hb_**(3/2))) /
-                (self.Vol - (3/5 * self.hb_**(5/2) + self.B * self.hb_**(3/2)) / self.Ar**(3/2)))
+                (3/5 * (self.hc**(5/2) - self.hb_**(5/2)) + self.Hberm * (self.hc**(3/2) - self.hb_**(3/2))) /
+                (self.Vol - (3/5 * self.hb_**(5/2) + self.Hberm * self.hb_**(3/2)) / self.Ar**(3/2)))
 
         AA = np.array([[self.xre_[0]**2, self.xre_[0], 1], [self.xre_[-1]**2, self.xre_[-1], 1], [2*self.xre_[0], 1, 0]])
         BB = np.array([Ee_[0], Ee_[-1], 0])
@@ -147,7 +147,7 @@ class cal_Jara_2(object):
                               self.gamma,
                               self.xc,
                               self.hc,
-                              self.B,
+                              self.Hberm,
                               self.Ar,
                               self.hb_,
                               self.xre_,
@@ -169,7 +169,7 @@ class cal_Jara_2(object):
                               self.gamma,
                               self.xc,
                               self.hc,
-                              self.B,
+                              self.Hberm,
                               self.Ar,
                               self.hb_,
                               self.xre_,
@@ -205,7 +205,7 @@ class cal_Jara_2(object):
                               self.gamma,
                               self.xc,
                               self.hc,
-                              self.B,
+                              self.Hberm,
                               self.Ar,
                               self.hb_,
                               self.xre_,
@@ -228,7 +228,7 @@ class cal_Jara_2(object):
                               self.gamma,
                               self.xc,
                               self.hc,
-                              self.B,
+                              self.Hberm,
                               self.Ar,
                               self.hb_,
                               self.xre_,
