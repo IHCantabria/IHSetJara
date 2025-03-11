@@ -89,9 +89,10 @@ class Jara_run(object):
         self.split_data()
 
         if self.switch_Yini == 1:
-            self.Yini = self.Obs_splited[0]
-        self.Sm = np.mean(self.Obs_splited)
-        self.xr_max = max(self.Obs_splited)
+            ii = np.argmin(np.abs(self.time_obs - self.time[0]))
+            self.Yini = self.Obs[ii]
+        self.Sm = np.mean(self.Obs)
+        self.xr_max = max(self.Obs)
 
         xr_minimorum = self.xc - (self.hc / self.Ar) ** (3 / 2)
         def equation(xr_min):
