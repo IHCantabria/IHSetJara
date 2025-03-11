@@ -64,8 +64,7 @@ class Jara_run(object):
         data.close()
         
         self.hs12, self.tp12 = Hs12Calc(self.hs.reshape(-1, 1), self.tp.reshape(-1, 1))
-        self.depth_of_closure = depthOfClosure(self.hs12, self.tp12, self.doc_formula)
-        self.hc = self.depth_of_closure[0][0]
+        self.hc = depthOfClosure(self.hs12, self.tp12, self.doc_formula)
         self.theta_max = self.theta_max * np.pi / 180
 
         if self.switch_brk == 0:
