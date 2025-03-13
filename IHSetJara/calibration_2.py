@@ -23,6 +23,8 @@ class cal_Jara_2(object):
 
         self.path = path
         self.name = 'Jara et al. (2015)'
+        self.mode = 'calibration'
+        self.type = 'CS'
      
         data = xr.open_dataset(path)
         

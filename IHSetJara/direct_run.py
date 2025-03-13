@@ -23,6 +23,8 @@ class Jara_run(object):
 
         self.path = path
         self.name = 'Jara et al. (2015)'
+        self.mode = 'standalone'
+        self.type = 'CS'
      
         data = xr.open_dataset(path)
         
