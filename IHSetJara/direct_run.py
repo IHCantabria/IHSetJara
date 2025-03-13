@@ -22,6 +22,7 @@ class Jara_run(object):
     def __init__(self, path):
 
         self.path = path
+        self.name = 'Jara et al. (2015)'
      
         data = xr.open_dataset(path)
         
@@ -176,6 +177,13 @@ class Jara_run(object):
     
     def run(self, par):
         self.full_run = self.run_model(par)
+        if self.switch_Yini == 1:
+            self.par_names = [r'$C^+$', r'$C^-$']
+            self.par_values = par
+        elif self.switch_Yini == 0:
+            self.par_names = [r'$C^+$', r'$C^-$', r'$Y_{i}$']
+            self.par_values = par
+        
         self.calculate_metrics()
 
     def calculate_metrics(self):

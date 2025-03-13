@@ -22,6 +22,7 @@ class cal_Jara_2(object):
     def __init__(self, path):
 
         self.path = path
+        self.name = 'Jara et al. (2015)'
      
         data = xr.open_dataset(path)
         
@@ -298,4 +299,17 @@ class cal_Jara_2(object):
         Calibrate the model.
         """
         self.solution, self.objectives, self.hist = self.calibr_cfg.calibrate(self)
+
+        self.full_run = self.run_model(self.solution)
+
+        if self.switch_Yini == 0:
+            self.par_names = [r'$C^+$', r'$C^-$']
+            self.par_values = self.solution.copy()
+            self.par_values[0] = -np.exp(self.par_values[0])
+            self.par_values[1] = -np.exp(self.par_values[1])
+        elif self.switch_Yini == 1:
+            self.par_names = [r'$C^+$', r'$C^-$', r'$Y_{i}$']
+            self.par_values = self.solution.copy()
+            self.par_values[0] = -np.exp(self.par_values[0])
+            self.par_values[1] = -np.exp(self.par_values[1])
             
