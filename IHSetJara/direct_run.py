@@ -29,6 +29,7 @@ class Jara_run(object):
         data = xr.open_dataset(path)
         
         cfg = json.loads(data.attrs['run_Jara'])
+        self.cfg = cfg
 
         self.switch_Yini = cfg['switch_Yini']
         self.switch_brk = cfg['switch_brk']

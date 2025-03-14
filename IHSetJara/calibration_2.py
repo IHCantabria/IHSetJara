@@ -29,6 +29,7 @@ class cal_Jara_2(object):
         data = xr.open_dataset(path)
         
         cfg = json.loads(data.attrs['Jara'])
+        self.cfg = cfg
 
         self.cal_alg = cfg['cal_alg']
         self.metrics = cfg['metrics']
