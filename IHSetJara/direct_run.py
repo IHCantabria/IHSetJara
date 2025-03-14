@@ -181,10 +181,10 @@ class Jara_run(object):
     def run(self, par):
         self.full_run = self.run_model(par)
         if self.switch_Yini == 1:
-            self.par_names = [r'$C^+$', r'$C^-$']
+            self.par_names = [r'C+', r'C-']
             self.par_values = par
         elif self.switch_Yini == 0:
-            self.par_names = [r'$C^+$', r'$C^-$', r'$Y_{i}$']
+            self.par_names = [r'C+', r'C-', r'Y_{i}']
             self.par_values = par
         
         self.calculate_metrics()
