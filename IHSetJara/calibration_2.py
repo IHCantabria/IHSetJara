@@ -83,8 +83,13 @@ class cal_Jara_2(object):
             self.hb, self.dirb, self.depthb = BreakingPropagation(self.hs, self.tp, self.dir, np.repeat(self.depth, len(self.hs)), np.repeat(self.bathy_angle, len(self.hs)), self.breakType)
 
         self.Ar = ADEAN(self.D50)
-        self.L = hunt(self.tp, self.depthb)
 
+        self.tp[self.tp < 0.1] = 0.1
+        self.depthb[self.depthb < 0.1] = 0.1
+        self.hb[self.hb < 0.01] = 0.01
+
+        self.L = hunt(self.tp, self.depthb)
+        
         rhos = 2650
         rho = 1025
         g = 9.81  
@@ -137,14 +142,16 @@ class cal_Jara_2(object):
         mkDTsplited = np.vectorize(lambda i: (self.time_splited[i+1] - self.time_splited[i]).total_seconds()/3600)
         self.dt_splited = mkDTsplited(np.arange(0, len(self.time_splited)-1))
 
+        # prints inputs mean to control errors
 
+        
         if self.switch_Yini == 0:
             # @jit
             def model_simulation(par):
                 ca = -np.exp(par[0])
                 ce = -np.exp(par[1])
                 
-                Ymd = jara(self.hb_splited,
+                Ymd, _ = jara(self.hb_splited,
                               self.Hcr_splited,
                               self.Yini,
                               self.dt_splited,
@@ -153,7 +160,6 @@ class cal_Jara_2(object):
                               self.hc,
                               self.Hberm,
                               self.Ar,
-                              self.hb_,
                               self.xre_,
                               self.pol,
                               self.Vol,
@@ -166,7 +172,7 @@ class cal_Jara_2(object):
             def run_model(par):
                 ca = -np.exp(par[0])
                 ce = -np.exp(par[1])
-                Ymd = jara(self.hb,
+                Ymd, _ = jara(self.hb,
                               self.Hcr,
                               self.Yini,
                               self.dt,
@@ -175,7 +181,6 @@ class cal_Jara_2(object):
                               self.hc,
                               self.Hberm,
                               self.Ar,
-                              self.hb_,
                               self.xre_,
                               self.pol,
                               self.Vol,
@@ -202,7 +207,7 @@ class cal_Jara_2(object):
                 ca = -np.exp(par[0])
                 ce = -np.exp(par[1])
                 Yini = par[2]
-                Ymd = jara(self.hb_splited,
+                Ymd, _ = jara(self.hb_splited,
                               self.Hcr_splited,
                               Yini,
                               self.dt_splited,
@@ -211,7 +216,6 @@ class cal_Jara_2(object):
                               self.hc,
                               self.Hberm,
                               self.Ar,
-                              self.hb_,
                               self.xre_,
                               self.pol,
                               self.Vol,
@@ -225,7 +229,7 @@ class cal_Jara_2(object):
                 ca = -np.exp(par[0])
                 ce = -np.exp(par[1])
                 Yini = par[2]
-                Ymd = jara(self.hb,
+                Ymd, _ = jara(self.hb,
                               self.Hcr,
                               Yini,
                               self.dt,
@@ -234,7 +238,6 @@ class cal_Jara_2(object):
                               self.hc,
                               self.Hberm,
                               self.Ar,
-                              self.hb_,
                               self.xre_,
                               self.pol,
                               self.Vol,
