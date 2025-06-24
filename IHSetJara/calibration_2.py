@@ -227,7 +227,7 @@ class cal_Jara_2(object):
 
             self.model_sim = model_simulation
 
-            def model_simulation(par):
+            def run_model(par):
                 ca = -np.exp(par[0])
                 ce = -np.exp(par[1])
                 Yini = par[2]
