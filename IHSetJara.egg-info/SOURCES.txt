@@ -2,6 +2,7 @@ README.md
 setup.py
 IHSetJara/__init__.py
 IHSetJara/calibration_2.py
+IHSetJara/calibration_3.py
 IHSetJara/direct_run.py
 IHSetJara/jara.py
 IHSetJara/plot_par_evolution.py
