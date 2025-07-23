@@ -211,7 +211,7 @@
 
 import numpy as np
 from scipy.optimize import fsolve
-from IHSetJara import jara_njit
+from IHSetJara import jara
 from IHSetUtils import ADEAN, hunt, Hs12Calc, depthOfClosure
 from IHSetUtils.CoastlineModel import CoastlineModel
 
@@ -313,38 +313,38 @@ class Jara_run(CoastlineModel):
         if self.switch_Yini == 1:
             ca = par[0]
             ce = par[1]
-            Ymd, _ = jara_njit(self.hb,
-                            self.Hcr,
-                            self.Yini,
-                            self.dt,
-                            self.gamma,
-                            self.xc,
-                            self.hc,
-                            self.Hberm,
-                            self.Ar,
-                            self.xre_,
-                            self.pol,
-                            self.Vol,
-                            ca,
-                            ce)
+            Ymd, _ = jara(self.hb,
+                          self.Hcr,
+                          self.Yini,
+                          self.dt,
+                          self.gamma,
+                          self.xc,
+                          self.hc,
+                          self.Hberm,
+                          self.Ar,
+                          self.xre_,
+                          self.pol,
+                          self.Vol,
+                          ca,
+                          ce)
         elif self.switch_Yini == 0:
             ca = par[0]
             ce = par[1]
             Yini = par[2]
-            Ymd, _ = jara_njit(self.hb,
-                            self.Hcr,
-                            Yini,
-                            self.dt,
-                            self.gamma,
-                            self.xc,
-                            self.hc,
-                            self.Hberm,
-                            self.Ar,
-                            self.xre_,
-                            self.pol,
-                            self.Vol,
-                            ca,
-                            ce)
+            Ymd, _ = jara(self.hb,
+                          self.Hcr,
+                          Yini,
+                          self.dt,
+                          self.gamma,
+                          self.xc,
+                          self.hc,
+                          self.Hberm,
+                          self.Ar,
+                          self.xre_,
+                          self.pol,
+                          self.Vol,
+                          ca,
+                          ce)
         return Ymd
 
     def _set_parameter_names(self):

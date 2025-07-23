@@ -2,7 +2,7 @@ import numpy as np
 from numba import njit
 import math
 
-@njit(nopython=True, fastmath=True, cache=True)
+@njit(fastmath=True, cache=True)
 def P_evolutivo_parabolico_numba(a, b, xro, xre, C, ddt):
     # Parámetros precomputados a y b/a
     if xro == xre:
