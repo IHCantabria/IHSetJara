@@ -264,8 +264,7 @@ class Jara_run(CoastlineModel):
 
         Ub_cr = (0.014*self.tp*((ss-1)**2)*(g**2)*(self.D50))**(1/3)
         self.Hcr = (2**0.5/np.pi)*Ub_cr*self.tp*np.sinh((2*np.pi*self.depthb)/self.L)
-        self.Hcr_s  = (2**0.5/np.pi)*Ub_cr*self.tp*np.sinh((2*np.pi*self.depthb_s)/self.L)
-
+        
         if self.switch_Yini == 1:
             self.Yini = self.Obs[0]
         self.Sm = np.mean(self.Obs)
