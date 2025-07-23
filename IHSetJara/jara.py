@@ -13,7 +13,7 @@ def P_evolutivo_parabolico_numba(a, b, xro, xre, C, ddt):
     
     return (b_div_a + xre * (exponent + 1.0)) / (exponent - 1.0)
 
-@njit(nopython=True, fastmath=True, cache=True)
+@njit(fastmath=True, cache=True)
 def jara(Hb, Hcr, xrini, dt, gamma, xc, hc, B, Ar, xre_tpl, pol, Vol, Ca, Ce):
     n = Hb.shape[0]
     # Convertir dt a segundos (vector)

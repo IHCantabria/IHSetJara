@@ -211,7 +211,7 @@
 
 import numpy as np
 from scipy.optimize import fsolve
-from IHSetJara import jara
+from IHSetJara import jara_njit
 from IHSetUtils import ADEAN, hunt, Hs12Calc, depthOfClosure
 from IHSetUtils.CoastlineModel import CoastlineModel
 
@@ -314,7 +314,7 @@ class Jara_run(CoastlineModel):
         if self.switch_Yini == 1:
             ca = par[0]
             ce = par[1]
-            Ymd, _ = jara(self.hb,
+            Ymd, _ = jara_njit(self.hb,
                             self.Hcr,
                             self.Yini,
                             self.dt,
@@ -332,7 +332,7 @@ class Jara_run(CoastlineModel):
             ca = par[0]
             ce = par[1]
             Yini = par[2]
-            Ymd, _ = jara(self.hb,
+            Ymd, _ = jara_njit(self.hb,
                             self.Hcr,
                             Yini,
                             self.dt,
